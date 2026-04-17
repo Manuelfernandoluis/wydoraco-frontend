@@ -1,0 +1,123 @@
+ 
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Corpo */
+body {
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Caixa principal */
+.chat-container {
+  width: 90%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  color: #1E90FF;
+  margin-bottom: 15px;
+}
+
+/* Área chat */
+#chatBox {
+  height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  background: #f9f9f9;
+}
+
+/* Input */
+#userInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Botão */
+#sendBtn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1E90FF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#sendBtn:hover {
+  background-color: #187bcd;
+}
+ 
+/*Vamos dar vida ao visual do bot*/
+ 
+.mensagem {
+  max-width: 75%;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.user {
+  background-color: #1E90FF;
+  color: white;
+  margin-left: auto;
+  text-align: right;
+}
+
+.bot {
+  background-color: #e5e5ea;
+  color: #333;
+  margin-right: auto;
+}
+ 
+/* Animações dos três pontos */
+ 
+#typing {
+  animation: piscar 1s infinite;
+}
+
+@keyframes piscar {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+ 
+ 
+.mensagem {
+  animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 

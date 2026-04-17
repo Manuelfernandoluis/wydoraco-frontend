@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuração da Empresa</title>
+  <link rel="stylesheet" href="css/configuracao.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Configuração da Empresa</h1>
+    <p>Preencha as informações para personalizar o seu bot.</p>
+
+    <form id="formConfig">
+
+      <label for="nome">Nome da Empresa</label>
+      <input 
+        type="text" 
+        id="nome" 
+        placeholder="Ex: Minha Empresa Ltda"
+        required
+      >
+
+      <label for="produtos">Produtos (nome - preço)</label>
+      <textarea 
+        id="produtos" 
+        placeholder="Ex: Arduino Uno - 12.000 Kz, Sensor de temperatura - 8.000 Kz"
+      ></textarea>
+      <small class="field-note">Separe cada produto com vírgula e informe o preço em Kz.</small>
+      <small class="field-note">Estes produtos são usados apenas pelo bot para responder clientes, não aparecem nos cards de produtos.</small>
+
+      <label for="servicos">Serviços</label>
+      <textarea 
+        id="servicos" 
+        placeholder="Ex: manutenção, automação residencial..."
+      ></textarea>
+      <small class="field-note">Estes serviços são usados apenas pelo bot para responder clientes e não aparecem nos cards de serviços.</small>
+
+      <label for="extra">Informações Extras (opcional)</label>
+      <textarea 
+        id="extra" 
+        placeholder="Ex: Atendimento até 18h, entregas disponíveis..."
+      ></textarea>
+
+      <button type="submit">Salvar Configuração</button>
+
+      <p id="mensagem"></p>
+
+    </form>
+
+  </div>
+
+  <script src="js/configuracao.js"></script>
+
+</body>
+</html>
+

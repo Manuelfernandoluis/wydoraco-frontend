@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Wydoraço</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>Wydoraço</h2>
+    <ul>
+      <li><a href="#" id="menuDashboard" class="active">Dashboard</a></li>
+      <li><a href="#" id="menuProdutos">Produtos</a></li>
+      <li><a href="#" id="menuServicos">Serviços</a></li>
+      <li><a href="#" id="menuConversas">Conversas</a></li>
+      <li><a href="#" id="menuPlanos">Planos</a></li>
+      <li><a href="#" id="menuEstatisticas">Estatísticas</a></li>
+      <li><a href="#" id="logout">Sair</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1 id="empresaNome">Bem-vindo(a), Empresa!</h1>
+      <p>Dashboard de controle do seu chatbot e vendas online</p>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Total de Produtos</h3>
+        <p id="totalProdutos">0</p>
+      </div>
+      <div class="card">
+        <h3>Total de Serviços</h3>
+        <p id="totalServicos">0</p>
+      </div>
+      <div class="card">
+        <h3>Total de Conversas</h3>
+        <p id="totalConversas">0</p>
+      </div>
+      <div class="card">
+        <h3>Total de Mensagens</h3>
+        <p id="totalMensagens">0</p>
+      </div>
+      <div class="card card-configuracao">
+        <h3>Configurações do Bot</h3>
+        <p>Editar produtos, serviços e informações extras</p>
+        <button id="btnConfigurarBot">Abrir configurações</button>
+      </div>
+    </section>
+
+    <section id="conteudoDinamico">
+      <!-- Conteúdo dinâmico será carregado aqui -->
+    </section>
+  </main>
+
+
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

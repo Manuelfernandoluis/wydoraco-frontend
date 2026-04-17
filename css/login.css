@@ -1,0 +1,117 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1E90FF, #87CEFA);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.animated-title {
+  color: #1E90FF;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid #1E90FF;
+  animation: slideIn 1s ease forwards, blinkCursor 0.7s step-end infinite;
+}
+
+@keyframes slideIn {
+  0% { transform: translateX(100%); opacity:0; }
+  100% { transform: translateX(0); opacity:1; }
+}
+
+@keyframes blinkCursor {
+  0%,100% { border-color: transparent; }
+  50% { border-color: #1E90FF; }
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #1E90FF;
+  box-shadow: 0 0 5px rgba(30,144,255,0.5);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1E90FF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #187bcd;
+  transform: scale(1.03);
+}
+
+#mensagem {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff3333;
+}
+
+#mensagem.sucesso {
+  color: #28a745;
+}
+
+/* Responsivo */
+@media (max-width:768px) {
+  .container { padding:30px; }
+  .animated-title { font-size:24px; }
+  input { padding:10px 12px; font-size:13px; }
+  button { padding:10px; font-size:15px; }
+}
+
+@media (max-width:480px) {
+  .container { padding:20px; }
+  .animated-title { font-size:20px; }
+  input { padding:8px 10px; font-size:12px; }
+  button { padding:10px; font-size:14px; }
+}

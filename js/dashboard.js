@@ -151,6 +151,25 @@ mostrarDashboard();
 };
 
 menuDashboard.addEventListener("click", mostrarDashboard);
+menuProdutos.addEventListener("click", () => {
+window.location.href = "configuracao.html";
+});
+
+menuServicos.addEventListener("click", () => {
+window.location.href = "configuracao.html";
+});
+
+menuConversas.addEventListener("click", () => {
+window.location.href = "configuracao.html";
+});
+
+menuPlanos.addEventListener("click", () => {
+window.location.href = "configuracao.html";
+});
+
+menuEstatisticas.addEventListener("click", () => {
+window.location.href = "configuracao.html";
+});
 
 mostrarDashboard();
 });

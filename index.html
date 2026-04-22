@@ -1,54 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WydoraçoBot</title>
-    <link rel="stylesheet" href="css/index.css">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Wydoraço</title>
+  <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-     <!-- Cabeçalho é caixa principal do chat -->
-      <div class="chat-container">
 
-         <!-- chat-header onde vai ficar o nome do chat-->
-          <header class="chat-header">
-                🤖 WydoraçoBot
-          </header>
+  <div class="container">
+    <h1 class="animated-title">Bem-vindo(a) de volta!</h1>
 
-           <!-- Área das mensagens onde vão aparecer elas -->
-            <div class="chat-messages" id="chat"></div>
+    <form id="formLogin">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Digite seu email" required>
 
-                 <!-- Botões rápidos -->
-                  <div class="quick-actions">
-                    <button onclick="acaoRapida('O que e a Wydoraco')" id="firstButton"> O que é a Wydoraço
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="Digite sua senha" required>
 
-                    </button>
+      <button type="submit">Entrar</button>
+    </form>
 
-                    <button onclick="acaoRapida('servicos')" id="firstButton">serviços</button>
+    <p style="margin-top:15px;">
+      <a href="cadastro.html" style="color:#1E90FF; text-decoration:none;">Criar conta</a> | 
+      <a href="recuperar.html" style="color:#1E90FF; text-decoration:none;">Esqueceu a senha?</a>
+    </p>
 
-                    <button onclick="acaoRapida('produtos')" id="firstButton">produtos</button>
-                  </div>
+    <div id="mensagem"></div>
+  </div>
 
-                  <!-- Campo de texto onde serão digitado as informações -->
-                   <div class="chat-input">
-                     <input type="text" id="inputMensagem" placeholder="Digite a sua mensagem...">
-                     <button onclick="enviarMensagem()">Enviar</button>
 
-                   </div> 
-            </div>
+  <script src="js/login.js"></script>
 
-            <script src="js/index.js"></script>
-            <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2JNBLK88PM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2JNBLK88PM');
-</script>
-      
 </body>
 </html>

@@ -150,26 +150,28 @@ mostrarDashboard();
 
 };
 
-menuDashboard.addEventListener("click", mostrarDashboard);
+ menuDashboard.addEventListener("click", mostrarDashboard);
+
 menuProdutos.addEventListener("click", () => {
-window.location.href = "configuracao.html";
+  window.location.href = "produtos.html";
 });
 
 menuServicos.addEventListener("click", () => {
-window.location.href = "configuracao.html";
+  window.location.href = "servicos.html";
 });
 
 menuConversas.addEventListener("click", () => {
-window.location.href = "configuracao.html";
+  window.location.href = "conversas.html";
 });
 
 menuPlanos.addEventListener("click", () => {
-window.location.href = "configuracao.html";
+  window.location.href = "planos.html";
 });
 
 menuEstatisticas.addEventListener("click", () => {
-window.location.href = "configuracao.html";
+  window.location.href = "estatisticas.html";
 });
+
 
 mostrarDashboard();
 });

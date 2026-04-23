@@ -4,23 +4,45 @@ const form = document.getElementById("formProduto");
 const listaProdutos = document.getElementById("listaProdutos");
 const mensagem = document.getElementById("mensagem");
 
+// Carregar produtos ao abrir página
 document.addEventListener("DOMContentLoaded", async () => {
   const email = localStorage.getItem("empresaEmail");
 
-  const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
-  const data = await response.json();
+  try {
+    const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
+    const data = await response.json();
 
-  if (data.produtos) {
-    const produtos = data.produtos.split(",");
+    console.log("Produtos recebidos:", data);
 
-    produtos.forEach(produto => {
-      const li = document.createElement("li");
-      li.innerText = produto.trim();
-      listaProdutos.appendChild(li);
-    });
+    listaProdutos.innerHTML = "";
+
+    if (data.produtos) {
+      let produtosArray;
+      if (Array.isArray(data.produtos)) {
+        produtosArray = data.produtos;
+      } else {
+        produtosArray = data.produtos.split(",");
+      }
+
+      produtosArray.forEach(produto => {
+        const li = document.createElement("li");
+        const trimmed = produto.trim();
+        const parts = trimmed.split(" - ");
+        if (parts.length === 2) {
+          li.innerText = `${parts[0]} - ${parts[1]} Kz`;
+        } else {
+          li.innerText = trimmed;
+        }
+        listaProdutos.appendChild(li);
+      });
+    }
+
+  } catch (error) {
+    console.log("Erro ao carregar produtos:", error);
   }
 });
 
+// Adicionar produto
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -36,28 +58,39 @@ form.addEventListener("submit", async (e) => {
 
   const produtoCompleto = `${produto} - ${preco}`;
 
-  const response = await fetch(`${API_BASE_URL}/company/add-product`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      email,
-      produto: produtoCompleto
-    })
-  });
+  try {
+    const response = await fetch(`${API_BASE_URL}/company/add-product`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        produto: produtoCompleto
+      })
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  mensagem.innerText = data.message;
-  mensagem.style.color = response.ok ? "green" : "red";
+    mensagem.innerText = data.message;
+    mensagem.style.color = response.ok ? "green" : "red";
 
-  if (response.ok) {
-    const li = document.createElement("li");
-    li.innerText = produtoCompleto;
-    listaProdutos.appendChild(li);
+    if (response.ok) {
+      const li = document.createElement("li");
+      const parts = produtoCompleto.split(" - ");
+      if (parts.length === 2) {
+        li.innerText = `${parts[0]} - ${parts[1]} Kz`;
+      } else {
+        li.innerText = produtoCompleto;
+      }
+      listaProdutos.appendChild(li);
 
-    document.getElementById("produto").value = "";
-    document.getElementById("preco").value = "";
+      document.getElementById("produto").value = "";
+      document.getElementById("preco").value = "";
+    }
+
+  } catch (error) {
+    mensagem.innerText = "Erro ao salvar produto.";
+    mensagem.style.color = "red";
   }
 });

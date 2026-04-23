@@ -4,6 +4,23 @@ const form = document.getElementById("formProduto");
 const listaProdutos = document.getElementById("listaProdutos");
 const mensagem = document.getElementById("mensagem");
 
+document.addEventListener("DOMContentLoaded", async () => {
+  const email = localStorage.getItem("empresaEmail");
+
+  const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
+  const data = await response.json();
+
+  if (data.produtos) {
+    const produtos = data.produtos.split(",");
+
+    produtos.forEach(produto => {
+      const li = document.createElement("li");
+      li.innerText = produto.trim();
+      listaProdutos.appendChild(li);
+    });
+  }
+});
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 

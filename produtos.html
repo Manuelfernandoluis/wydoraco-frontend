@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
@@ -8,21 +8,22 @@
 <body>
 
 <div class="container">
-  <h1>Área de Produtos</h1>
+  <h1>Gestão de Produtos</h1>
 
   <form id="formProduto">
-    <input type="text" id="produto" placeholder="Digite o produto">
-    <button type="submit">Adicionar Produto</button>
+    <input type="text" id="produto" placeholder="Nome do produto">
+    <input type="text" id="preco" placeholder="Preço">
+    <button type="submit">Adicionar</button>
   </form>
 
   <p id="mensagem"></p>
 
   <ul id="listaProdutos"></ul>
 
-  <a href="dashboard.html">Voltar ao Dashboard</a>
+  <a href="dashboard.html" class="voltar">Voltar ao Dashboard</a>
 </div>
 
-<script src="js/produtos.js"></script>
+<script src="produtos.js"></script>
 
 </body>
 </html>

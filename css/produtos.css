@@ -1,54 +1,76 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f4f6f9;
+  background: #f4f6fb;
   margin: 0;
   padding: 0;
 }
 
 .container {
   width: 90%;
-  max-width: 500px;
-  margin: 50px auto;
+  max-width: 650px;
+  margin: 40px auto;
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 h1 {
   text-align: center;
+  color: #1f3c88;
+  margin-bottom: 25px;
 }
 
 form {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 input {
   flex: 1;
-  padding: 10px;
+  min-width: 180px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 button {
-  padding: 10px 15px;
+  padding: 12px 20px;
+  background: #1f3c88;
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
 }
 
+button:hover {
+  background: #162f6b;
+}
+
 ul {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 0;
 }
 
 li {
   list-style: none;
-  background: #eee;
-  padding: 10px;
+  background: #eef3ff;
+  padding: 12px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
+  color: #333;
 }
 
-a {
+#mensagem {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.voltar {
   display: block;
-  margin-top: 20px;
+  margin-top: 25px;
   text-align: center;
+  text-decoration: none;
+  color: #1f3c88;
 }

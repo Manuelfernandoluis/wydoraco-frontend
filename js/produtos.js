@@ -8,12 +8,16 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const produto = document.getElementById("produto").value.trim();
+  const preco = document.getElementById("preco").value.trim();
   const email = localStorage.getItem("empresaEmail");
 
-  if (!produto) {
-    mensagem.innerText = "Digite um produto.";
+  if (!produto || !preco) {
+    mensagem.innerText = "Preencha nome e preço.";
+    mensagem.style.color = "red";
     return;
   }
+
+  const produtoCompleto = `${produto} - ${preco}`;
 
   const response = await fetch(`${API_BASE_URL}/company/add-product`, {
     method: "POST",
@@ -22,18 +26,21 @@ form.addEventListener("submit", async (e) => {
     },
     body: JSON.stringify({
       email,
-      produto
+      produto: produtoCompleto
     })
   });
 
   const data = await response.json();
 
   mensagem.innerText = data.message;
+  mensagem.style.color = response.ok ? "green" : "red";
 
   if (response.ok) {
     const li = document.createElement("li");
-    li.innerText = produto;
+    li.innerText = produtoCompleto;
     listaProdutos.appendChild(li);
+
     document.getElementById("produto").value = "";
+    document.getElementById("preco").value = "";
   }
 });

@@ -60,6 +60,32 @@ li {
   margin-bottom: 10px;
   border-radius: 8px;
   color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-btn, .delete-btn {
+  padding: 6px 12px;
+  background: #1f3c88;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.edit-btn:hover {
+  background: #162f6b;
+}
+
+.delete-btn {
+  background: #dc3545;
+}
+
+.delete-btn:hover {
+  background: #c82333;
 }
 
 #mensagem {

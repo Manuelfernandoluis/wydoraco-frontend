@@ -48,7 +48,7 @@ if (!original) return null;
 const nome = localStorage.getItem("empresaNome");
 
 if (!nome) {
-window.location.href = "login.html";
+window.location.href = "index.html";
 return;
 }
 
@@ -57,7 +57,7 @@ empresaNome.innerText = `Bem-vindo(a), ${nome}!`;
 logoutBtn.addEventListener("click", () => {
 localStorage.removeItem("empresaNome");
 localStorage.removeItem("empresaEmail");
-window.location.href = "login.html";
+window.location.href = "index.html";
 });
 
 function resetActiveMenu() {
@@ -66,52 +66,73 @@ function resetActiveMenu() {
 }
 
 async function mostrarDashboard() {
-secaoAtual = "dashboard";
+  secaoAtual = "dashboard";
 
- 
-resetActiveMenu();
-menuDashboard.classList.add("active");
+  resetActiveMenu();
+  menuDashboard.classList.add("active");
 
-const email = localStorage.getItem("empresaEmail");
-
-conteudoDinamico.innerHTML = `
-  <h2>Resumo Rápido</h2>
-  <p>A carregar dados...</p>
-`;
-
-try {
-  const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
-  const data = await response.json();
-
-  const produtosDetalhados = parseItensComPreco(data.produtos);
-  totalProdutos.innerText = produtosDetalhados.length;
-
-  const listaServicos = data.servicos ? data.servicos.split(",") : [];
-  totalServicos.innerText = listaServicos.length;
-
-  const logsResponse = await fetch(`${API_BASE_URL}/logs/${email}`);
-  const logs = await logsResponse.json();
-
-  totalConversas.innerText = logs.length;
-  totalMensagens.innerText = logs.length * 2;
+  const email = localStorage.getItem("empresaEmail");
 
   conteudoDinamico.innerHTML = `
-    <h2>Resumo da Empresa</h2>
-    <div class="resumo-box">
-      <p><strong>Plano:</strong> ${data.plano || "Wydoraço Grátis"}</p>
-      <p><strong>Perguntas Respondidas:</strong> ${data.perguntasRespondidas || 0}</p>
-      <a href="bot.html" target="_blank" class="btnBot">Abrir Meu Bot</a>
-    </div>
+    <h2>Resumo Rápido</h2>
+    <p>A carregar dados...</p>
   `;
 
-} catch (error) {
-  conteudoDinamico.innerHTML = `
-    <h2>Erro</h2>
-    <p>Não foi possível carregar os dados.</p>
-  `;
-}
- 
+  try {
+    const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
 
+    if (!response.ok) {
+      throw new Error("Erro ao carregar empresa");
+    }
+
+    const data = await response.json();
+
+    let produtosDetalhados = [];
+
+    if (data.produtos) {
+      if (Array.isArray(data.produtos)) {
+        produtosDetalhados = data.produtos;
+      } else {
+        produtosDetalhados = parseItensComPreco(data.produtos);
+      }
+    }
+
+    totalProdutos.innerText = produtosDetalhados.length;
+
+    const listaServicos = data.servicos
+      ? data.servicos.split(",")
+      : [];
+
+    totalServicos.innerText = listaServicos.length;
+
+    const logsResponse = await fetch(`${API_BASE_URL}/logs/${email}`);
+
+    if (!logsResponse.ok) {
+      throw new Error("Erro ao carregar logs");
+    }
+
+    const logs = await logsResponse.json();
+
+    totalConversas.innerText = logs.length;
+    totalMensagens.innerText = logs.length * 2;
+
+    conteudoDinamico.innerHTML = `
+      <h2>Resumo da Empresa</h2>
+      <div class="resumo-box">
+        <p><strong>Plano:</strong> ${data.plano || "Wydoraço Grátis"}</p>
+        <p><strong>Perguntas Respondidas:</strong> ${data.perguntasRespondidas || 0}</p>
+        <a href="bot.html" target="_blank" class="btnBot">Abrir Meu Bot</a>
+      </div>
+    `;
+
+  } catch (error) {
+    console.log("Erro dashboard:", error);
+
+    conteudoDinamico.innerHTML = `
+      <h2>Erro</h2>
+      <p>Não foi possível carregar os dados.</p>
+    `;
+  }
 }
 
 window.criarPagamento = async function(plano) {

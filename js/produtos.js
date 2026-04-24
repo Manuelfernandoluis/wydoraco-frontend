@@ -11,8 +11,6 @@ async function loadProdutos() {
     const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
     const data = await response.json();
 
-    console.log("Produtos recebidos:", data);
-
     listaProdutos.innerHTML = "";
 
     if (!data.produtos || data.produtos.length === 0) {
@@ -28,12 +26,9 @@ async function loadProdutos() {
       item.className = "produto-item";
 
       item.innerHTML = `
-        <div>
-          <strong>${nome}</strong> - ${preco} Kz
-        </div>
-        <div>
-          <button onclick="editProduto('${nome}')">Editar</button>
-          <button onclick="deleteProduto('${nome}')">Eliminar</button>
+        <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #ddd;">
+          <span>${nome}</span>
+          <span>${preco} Kz</span>
         </div>
       `;
 
@@ -41,15 +36,12 @@ async function loadProdutos() {
     });
 
   } catch (error) {
-    console.log("Erro ao carregar produtos:", error);
     mensagem.innerText = "Erro ao carregar produtos.";
     mensagem.style.color = "red";
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadProdutos();
-});
+document.addEventListener("DOMContentLoaded", loadProdutos);
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -64,8 +56,6 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  const produtoCompleto = `${produto} - ${preco}`;
-
   try {
     const response = await fetch(`${API_BASE_URL}/company/add-product`, {
       method: "POST",
@@ -74,7 +64,8 @@ form.addEventListener("submit", async (e) => {
       },
       body: JSON.stringify({
         email,
-        produto: produtoCompleto
+        nome: produto,
+        preco: Number(preco)
       })
     });
 
@@ -93,56 +84,3 @@ form.addEventListener("submit", async (e) => {
     mensagem.style.color = "red";
   }
 });
-
-async function editProduto(produtoAntigo) {
-  const produtoNovo = prompt("Editar produto:", produtoAntigo);
-
-  if (!produtoNovo) return;
-
-  const email = localStorage.getItem("empresaEmail");
-
-  try {
-    await fetch(`${API_BASE_URL}/company/edit-product`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email,
-        produtoAntigo,
-        produtoNovo
-      })
-    });
-
-    loadProdutos();
-
-  } catch (error) {
-    mensagem.innerText = "Erro ao editar produto.";
-    mensagem.style.color = "red";
-  }
-}
-
-async function deleteProduto(produto) {
-  if (!confirm("Eliminar este produto?")) return;
-
-  const email = localStorage.getItem("empresaEmail");
-
-  try {
-    await fetch(`${API_BASE_URL}/company/remove-product`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email,
-        produto
-      })
-    });
-
-    loadProdutos();
-
-  } catch (error) {
-    mensagem.innerText = "Erro ao eliminar produto.";
-    mensagem.style.color = "red";
-  }
-}

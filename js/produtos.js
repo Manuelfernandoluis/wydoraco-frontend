@@ -1,10 +1,9 @@
- const API_BASE_URL = "https://wydoraco-backend.onrender.com";
+const API_BASE_URL = "https://wydoraco-backend.onrender.com";
 
 const form = document.getElementById("formProduto");
 const listaProdutos = document.getElementById("listaProdutos");
 const mensagem = document.getElementById("mensagem");
 
-// Carregar produtos
 async function loadProdutos() {
   const email = localStorage.getItem("empresaEmail");
 
@@ -16,36 +15,30 @@ async function loadProdutos() {
 
     listaProdutos.innerHTML = "";
 
-    if (data.produtos) {
-      let produtosArray;
-
-      if (Array.isArray(data.produtos)) {
-        produtosArray = data.produtos;
-      } else {
-        produtosArray = data.produtos.split(",");
-      }
-
-      produtosArray.forEach(produto => {
-        const trimmed = produto.trim();
-
-        const li = document.createElement("li");
-        li.innerHTML = `
-          ${trimmed}
-          <button class="edit-btn">Editar</button>
-          <button class="delete-btn">Eliminar</button>
-        `;
-
-        li.querySelector(".edit-btn").addEventListener("click", () => {
-          editProduto(trimmed);
-        });
-
-        li.querySelector(".delete-btn").addEventListener("click", () => {
-          deleteProduto(trimmed);
-        });
-
-        listaProdutos.appendChild(li);
-      });
+    if (!data.produtos || data.produtos.length === 0) {
+      listaProdutos.innerHTML = "<p>Nenhum produto cadastrado.</p>";
+      return;
     }
+
+    data.produtos.forEach(produto => {
+      const nome = produto.nome || "Sem nome";
+      const preco = produto.preco || 0;
+
+      const item = document.createElement("div");
+      item.className = "produto-item";
+
+      item.innerHTML = `
+        <div>
+          <strong>${nome}</strong> - ${preco} Kz
+        </div>
+        <div>
+          <button onclick="editProduto('${nome}')">Editar</button>
+          <button onclick="deleteProduto('${nome}')">Eliminar</button>
+        </div>
+      `;
+
+      listaProdutos.appendChild(item);
+    });
 
   } catch (error) {
     console.log("Erro ao carregar produtos:", error);
@@ -54,12 +47,10 @@ async function loadProdutos() {
   }
 }
 
-// Abrir página
 document.addEventListener("DOMContentLoaded", () => {
   loadProdutos();
 });
 
-// Adicionar produto
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -93,8 +84,8 @@ form.addEventListener("submit", async (e) => {
     mensagem.style.color = response.ok ? "green" : "red";
 
     if (response.ok) {
-      await loadProdutos();
       form.reset();
+      loadProdutos();
     }
 
   } catch (error) {
@@ -103,7 +94,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Editar produto
 async function editProduto(produtoAntigo) {
   const produtoNovo = prompt("Editar produto:", produtoAntigo);
 
@@ -124,7 +114,7 @@ async function editProduto(produtoAntigo) {
       })
     });
 
-    await loadProdutos();
+    loadProdutos();
 
   } catch (error) {
     mensagem.innerText = "Erro ao editar produto.";
@@ -132,7 +122,6 @@ async function editProduto(produtoAntigo) {
   }
 }
 
-// Eliminar produto
 async function deleteProduto(produto) {
   if (!confirm("Eliminar este produto?")) return;
 
@@ -150,7 +139,7 @@ async function deleteProduto(produto) {
       })
     });
 
-    await loadProdutos();
+    loadProdutos();
 
   } catch (error) {
     mensagem.innerText = "Erro ao eliminar produto.";

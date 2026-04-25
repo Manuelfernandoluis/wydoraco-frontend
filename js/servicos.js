@@ -1,12 +1,9 @@
-const API_BASE_URL = "https://wydoraco-backend.onrender.com";
+ const API_BASE_URL = "https://wydoraco-backend.onrender.com";
 
 const form = document.getElementById("formServico");
 const listaServicos = document.getElementById("listaServicos");
 const mensagem = document.getElementById("mensagem");
 
-// =========================
-// Carregar serviços
-// =========================
 async function loadServicos() {
   const email = localStorage.getItem("empresaEmail");
 
@@ -16,23 +13,23 @@ async function loadServicos() {
 
     listaServicos.innerHTML = "";
 
-    if (!data.servicos || data.servicos.trim() === "") {
+    if (!data.servicos || data.servicos.length === 0) {
       listaServicos.innerHTML = "<p>Nenhum serviço cadastrado.</p>";
       return;
     }
 
-    const servicos = data.servicos.split(",");
-
-    servicos.forEach(servico => {
-      const nome = servico.trim();
+    data.servicos.forEach(servico => {
+      const nome = servico.nome || "Sem nome";
+      const preco = servico.preco || 0;
 
       const item = document.createElement("div");
       item.className = "produto-item";
 
       item.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #ddd;">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px;">
           <div>
-            <strong>${nome}</strong>
+            <strong>${nome}</strong><br>
+            <small>${preco} Kz</small>
           </div>
 
           <div style="display:flex; gap:10px;">
@@ -43,7 +40,7 @@ async function loadServicos() {
       `;
 
       item.querySelector(".editar-btn").addEventListener("click", () => {
-        editServico(nome);
+        editServico(nome, preco);
       });
 
       item.querySelector(".eliminar-btn").addEventListener("click", () => {
@@ -59,22 +56,17 @@ async function loadServicos() {
   }
 }
 
-// =========================
-// Inicializar página
-// =========================
 document.addEventListener("DOMContentLoaded", loadServicos);
 
-// =========================
-// Adicionar serviço
-// =========================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const servico = document.getElementById("servico").value.trim();
+  const preco = document.getElementById("preco").value.trim();
   const email = localStorage.getItem("empresaEmail");
 
-  if (!servico) {
-    mensagem.innerText = "Preencha o serviço.";
+  if (!servico || !preco) {
+    mensagem.innerText = "Preencha nome e preço.";
     mensagem.style.color = "red";
     return;
   }
@@ -87,7 +79,8 @@ form.addEventListener("submit", async (e) => {
       },
       body: JSON.stringify({
         email,
-        servico
+        nome: servico,
+        preco: Number(preco)
       })
     });
 
@@ -107,61 +100,43 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// =========================
-// Editar serviço
-// =========================
-async function editServico(servicoAntigo) {
-  const novoServico = prompt("Novo serviço:", servicoAntigo);
+async function editServico(nomeAntigo, precoAntigo) {
+  const novoNome = prompt("Novo nome:", nomeAntigo);
+  const novoPreco = prompt("Novo preço:", precoAntigo);
 
-  if (!novoServico) return;
+  if (!novoNome || !novoPreco) return;
 
   const email = localStorage.getItem("empresaEmail");
 
-  try {
-    await fetch(`${API_BASE_URL}/company/edit-service`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email,
-        servicoAntigo,
-        servicoNovo: novoServico
-      })
-    });
+  await fetch(`${API_BASE_URL}/company/edit-service`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email,
+      servicoAntigo: nomeAntigo,
+      servicoNovo: novoNome,
+      precoNovo: novoPreco
+    })
+  });
 
-    loadServicos();
-
-  } catch (error) {
-    mensagem.innerText = "Erro ao editar serviço.";
-    mensagem.style.color = "red";
-  }
+  loadServicos();
 }
 
-// =========================
-// Eliminar serviço
-// =========================
-async function deleteServico(servico) {
-  if (!confirm("Eliminar este serviço?")) return;
-
+async function deleteServico(nome) {
   const email = localStorage.getItem("empresaEmail");
 
-  try {
-    await fetch(`${API_BASE_URL}/company/remove-service`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email,
-        servico
-      })
-    });
+  await fetch(`${API_BASE_URL}/company/remove-service`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email,
+      servico: nome
+    })
+  });
 
-    loadServicos();
-
-  } catch (error) {
-    mensagem.innerText = "Erro ao eliminar serviço.";
-    mensagem.style.color = "red";
-  }
+  loadServicos();
 }

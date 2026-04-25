@@ -100,3 +100,39 @@ li {
   text-decoration: none;
   color: #1f3c88;
 }
+
+.editar-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.editar-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.eliminar-btn {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.eliminar-btn:hover {
+  background-color: #b91c1c;
+}
+
+.produto-item {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+}

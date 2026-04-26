@@ -99,9 +99,7 @@ async function mostrarDashboard() {
 
     totalProdutos.innerText = produtosDetalhados.length;
 
-    const listaServicos = data.servicos
-      ? data.servicos.split(",")
-      : [];
+    const listaServicos = Array.isArray(data.servicos) ? data.servicos : [];
 
     totalServicos.innerText = listaServicos.length;
 

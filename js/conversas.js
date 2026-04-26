@@ -7,22 +7,25 @@ async function loadConversas() {
 
   try {
     const response = await fetch(`${API_BASE_URL}/logs/${email}`);
-    const logs = await response.json();
+    const data = await response.json();
 
     listaConversas.innerHTML = "";
 
-    if (!logs.length) {
+    if (!data || data.length === 0) {
       listaConversas.innerHTML = "<p>Nenhuma conversa encontrada.</p>";
       return;
     }
 
-    logs.forEach(log => {
+    data.forEach(log => {
       const item = document.createElement("div");
       item.className = "conversa-item";
 
       item.innerHTML = `
-        <div class="cliente">Cliente: ${log.pergunta}</div>
-        <div class="bot">Bot: ${log.resposta}</div>
+        <div style="padding:15px; border-bottom:1px solid #ddd;">
+          <strong>Cliente:</strong> ${log.userMessage}<br>
+          <strong>Bot:</strong> ${log.botResponse}<br>
+          <small>${new Date(log.createdAt).toLocaleString()}</small>
+        </div>
       `;
 
       listaConversas.appendChild(item);
@@ -30,6 +33,7 @@ async function loadConversas() {
 
   } catch (error) {
     listaConversas.innerHTML = "<p>Erro ao carregar conversas.</p>";
+    console.log(error);
   }
 }
 

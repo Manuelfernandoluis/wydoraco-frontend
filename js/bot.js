@@ -33,7 +33,7 @@ adicionarMensagem("bot", "Erro ao carregar dados da empresa.");
 sendBtn.addEventListener("click", () => {
 const pergunta = userInput.value.trim();
 
-```
+ 
 if (!pergunta) return;
 
 adicionarMensagem("user", pergunta);
@@ -41,7 +41,7 @@ adicionarMensagem("user", pergunta);
 responderBot(pergunta);
 
 userInput.value = "";
-```
+ 
 
 });
 
@@ -56,12 +56,12 @@ function adicionarMensagem(tipo, texto) {
 const msg = document.createElement("div");
 msg.classList.add("mensagem", tipo);
 
-```
+
 msg.innerHTML = texto.replace(/\n/g, "<br>");
 
 chatBox.appendChild(msg);
 chatBox.scrollTop = chatBox.scrollHeight;
-```
+ 
 
 }
 
@@ -72,10 +72,10 @@ typing.classList.add("mensagem", "bot");
 typing.id = "typing";
 typing.innerText = "...";
 
-```
+ 
 chatBox.appendChild(typing);
 chatBox.scrollTop = chatBox.scrollHeight;
-```
+ 
 
 }
 
@@ -90,8 +90,7 @@ console.log(dadosEmpresa);
 // Respostas IA
 function responderBot(pergunta) {
 mostrarDigitando();
-
-```
+ 
 console.log("🤖 BOT: Fazendo pergunta:", pergunta);
 console.log("🤖 BOT: Email da empresa:", dadosEmpresa.email);
 
@@ -122,7 +121,7 @@ fetch("https://wydoraco-backend.onrender.com/ia", {
 
     salvarConversa(pergunta, data.resposta);
   });
-```
+ 
 
 }
 

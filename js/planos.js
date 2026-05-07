@@ -1,14 +1,36 @@
 const API_BASE_URL = "https://wydoraco-backend.onrender.com";
 
-async function escolherPlano(plano) {
+async function carregarPlanoAtual() {
 
-  const email = localStorage.getItem("empresaEmail");
+  try {
 
-  if (!email) {
-    alert("Faça login novamente.");
-    window.location.href = "login.html";
-    return;
+    const response = await fetch(
+      `${API_BASE_URL}/company/data/${email}`
+    );
+
+    const data = await response.json();
+
+    const botoes = document.querySelectorAll(".plano-card button");
+
+    botoes.forEach(btn => {
+
+      const planoBotao = btn.dataset.plano;
+
+      if (planoBotao === data.plano) {
+
+        btn.innerText = "Plano Atual";
+        btn.disabled = true;
+        btn.style.opacity = "0.7";
+        btn.style.cursor = "not-allowed";
+      }
+    });
+
+  } catch (error) {
+    console.log(error);
   }
+}
+
+async function escolherPlano(plano) {
 
   try {
 
@@ -26,18 +48,22 @@ async function escolherPlano(plano) {
     const data = await response.json();
 
     if (!response.ok) {
-      alert(data.message || "Erro ao ativar plano");
+      alert(data.message);
       return;
     }
 
+    localStorage.setItem("planoAtual", plano);
+
     alert(`Plano ${plano} ativado com sucesso!`);
 
-    window.location.href = "dashboard.html";
+    window.location.reload();
 
   } catch (error) {
 
     console.log(error);
 
-    alert("Erro ao conectar com servidor.");
+    alert("Erro ao conectar ao servidor.");
   }
 }
+
+carregarPlanoAtual();

@@ -23,9 +23,10 @@
         <li>Suporte limitado</li>
       </ul>
 
-      <button onclick="escolherPlano('Wydoraço Grátis')">
-        Plano Atual
-      </button>
+       <button data-plano="Wydoraço Grátis"
+       onclick="escolherPlano('Wydoraço Grátis')">
+       Plano Atual
+       </button>
     </div>
 
     <div class="plano-card pro">
@@ -38,9 +39,10 @@
         <li>Atendimento prioritário</li>
       </ul>
 
-      <button onclick="escolherPlano('Wydoraço Pro')">
-        Ativar Plano
-      </button>
+        <button data-plano="Wydoraço Pro"
+         onclick="escolherPlano('Wydoraço Pro')">
+         Ativar Plano
+        </button>
     </div>
 
     <div class="plano-card proplus">
@@ -53,8 +55,9 @@
         <li>Melhor desempenho</li>
       </ul>
 
-      <button onclick="escolherPlano('Wydoraço Pro+')">
-        Ativar Plano
+      <button data-plano="Wydoraço Pro+"
+      onclick="escolherPlano('Wydoraço Pro+')">
+      Ativar Plano
       </button>
     </div>
 
@@ -68,12 +71,36 @@
         <li>Suporte prioritário</li>
       </ul>
 
-      <button onclick="escolherPlano('Wydoraço Premium')">
+       <button data-plano="Wydoraço Premium"
+        onclick="escolherPlano('Wydoraço Premium')">
         Ativar Plano
-      </button>
+       </button>
     </div>
 
+    
   </div>
+
+  <div class="pagamento-box">
+
+         <h2>Pagamento</h2>
+
+         <p><strong>Express:</strong> 936237701</p>
+         <p><strong>IBAN:</strong> 0006 0000 16076612301 22</p>
+          <p><strong>Destinatário:</strong> Manuel Fernando Luis</p>
+
+          <img
+             src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=936237701"
+            alt="QR Code"
+             >
+
+         <input type="file" id="comprovativo">
+
+         <button onclick="enviarComprovativo()">
+          Enviar Comprovativo
+        </button>
+
+</div>
+
 
   <a href="dashboard.html" class="voltar">
     Voltar ao Dashboard

@@ -113,3 +113,53 @@ h1 {
   color: #333;
   font-weight: bold;
 }
+
+.premium {
+  border-top: 6px solid #ff9800;
+  transform: scale(1.05);
+  position: relative;
+}
+
+.premium::before {
+  content: "MAIS POPULAR";
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #ff9800;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.pagamento-box {
+  margin-top: 50px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.pagamento-box h2 {
+  margin-bottom: 20px;
+}
+
+.pagamento-box p {
+  margin: 10px 0;
+}
+
+.pagamento-box input {
+  margin-top: 20px;
+}
+
+.pagamento-box button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  background: #28a745;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}

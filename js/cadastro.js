@@ -15,11 +15,15 @@ const response = await fetch(`${API_BASE_URL}/company/register`, {
   },
 
   body: JSON.stringify({
-    nome: nome,
-    email: email,
-    senha: senha,
-    slug: slug
-  })
+  nome,
+  email,
+  senha,
+  slug,
+  iban,
+  express,
+  telefoneAtendimento,
+  telefoneSuporte
+})
 });
 
 const data = await response.json();
@@ -64,6 +68,11 @@ botao.disabled = true;
 const nome = document.getElementById("nome").value;
 const email = document.getElementById("email").value;
 const senha = document.getElementById("senha").value;
+
+const iban = document.getElementById("iban").value.trim();
+const express = document.getElementById("express").value.trim();
+const telefoneAtendimento = document.getElementById("telefoneAtendimento").value.trim();
+const telefoneSuporte = document.getElementById("telefoneSuporte").value.trim();
 
 const erro = validarCadastro(nome, email, senha);
 

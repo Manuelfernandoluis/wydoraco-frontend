@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f7fb;
+  padding: 40px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 40px;
+  color: #222;
+}
+
+.planos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.plano-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.plano-card:hover {
+  transform: translateY(-10px);
+}
+
+.plano-card h2 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.plano-card h3 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.plano-card ul {
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+.plano-card ul li {
+  margin: 12px 0;
+  color: #555;
+}
+
+.plano-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.gratis {
+  border-top: 6px solid #777;
+}
+
+.gratis button {
+  background: #777;
+}
+
+.pro {
+  border-top: 6px solid #007bff;
+}
+
+.pro button {
+  background: #007bff;
+}
+
+.proplus {
+  border-top: 6px solid #28a745;
+}
+
+.proplus button {
+  background: #28a745;
+}
+
+.premium {
+  border-top: 6px solid #ff9800;
+}
+
+.premium button {
+  background: #ff9800;
+}
+
+.plano-card button:hover {
+  opacity: 0.9;
+}
+
+.voltar {
+  display: inline-block;
+  margin-top: 40px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}

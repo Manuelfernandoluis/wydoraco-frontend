@@ -1,14 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<title>Planos</title>
+  <meta charset="UTF-8">
+  <title>Planos Wydoraço</title>
+  <link rel="stylesheet" href="css/planos.css">
 </head>
 <body>
 
-<h1>Área de Planos</h1>
+<div class="container">
 
-<a href="dashboard.html">Voltar ao Dashboard</a>
+  <h1>Escolha o seu plano</h1>
+
+  <div class="planos-grid">
+
+    <div class="plano-card gratis">
+      <h2>Wydoraço Grátis</h2>
+      <h3>0 Kz</h3>
+
+      <ul>
+        <li>50 perguntas por mês</li>
+        <li>IA básica</li>
+        <li>Suporte limitado</li>
+      </ul>
+
+      <button onclick="escolherPlano('Wydoraço Grátis')">
+        Plano Atual
+      </button>
+    </div>
+
+    <div class="plano-card pro">
+      <h2>Wydoraço Pro</h2>
+      <h3>2000 Kz</h3>
+
+      <ul>
+        <li>500 perguntas por mês</li>
+        <li>IA melhorada</li>
+        <li>Atendimento prioritário</li>
+      </ul>
+
+      <button onclick="escolherPlano('Wydoraço Pro')">
+        Ativar Plano
+      </button>
+    </div>
+
+    <div class="plano-card proplus">
+      <h2>Wydoraço Pro+</h2>
+      <h3>4000 Kz</h3>
+
+      <ul>
+        <li>Perguntas ilimitadas</li>
+        <li>IA inteligente</li>
+        <li>Melhor desempenho</li>
+      </ul>
+
+      <button onclick="escolherPlano('Wydoraço Pro+')">
+        Ativar Plano
+      </button>
+    </div>
+
+    <div class="plano-card premium">
+      <h2>Wydoraço Premium</h2>
+      <h3>8000 Kz</h3>
+
+      <ul>
+        <li>IA vendedora automática</li>
+        <li>Modo comercial inteligente</li>
+        <li>Suporte prioritário</li>
+      </ul>
+
+      <button onclick="escolherPlano('Wydoraço Premium')">
+        Ativar Plano
+      </button>
+    </div>
+
+  </div>
+
+  <a href="dashboard.html" class="voltar">
+    Voltar ao Dashboard
+  </a>
+
+</div>
+
+<script src="js/planos.js"></script>
 
 </body>
 </html>

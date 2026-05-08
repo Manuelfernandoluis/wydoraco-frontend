@@ -1,24 +1,92 @@
- 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Assistente Virtual</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Wydoraço IA</title>
+
   <link rel="stylesheet" href="css/bot.css">
 </head>
+
 <body>
 
-  <div class="chat-container">
-    <h1 id="botTitulo">Assistente Virtual</h1>
+<div class="chat-container">
 
-    <div id="chatBox"></div>
+  <!-- HEADER -->
 
-    <input type="text" id="userInput" placeholder="Digite sua pergunta...">
-    <button id="sendBtn">Enviar</button>
+  <div class="chat-header">
+
+    <div>
+      <h2>Wydoraço IA</h2>
+
+      <p>
+        Assistente virtual inteligente
+      </p>
+    </div>
+
+    <div class="status-online">
+      Online
+    </div>
+
   </div>
 
-  <script src="js/bot.js"></script>
+  <!-- MENSAGENS -->
+
+  <div
+    class="chat-messages"
+    id="chatMessages"
+  >
+
+    <div class="bot-message">
+
+      👋 Olá! Seja bem-vindo à Wydoraço.
+
+      <br><br>
+
+      Posso ajudar com:
+
+      <br><br>
+
+      • Arduino
+      <br>
+      • Sensores
+      <br>
+      • Automação
+      <br>
+      • Componentes eletrônicos
+      <br>
+      • Serviços técnicos
+      <br>
+      • Compras
+
+    </div>
+
+  </div>
+
+  <!-- INPUT -->
+
+  <div class="chat-input-area">
+
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Digite sua mensagem..."
+    >
+
+    <button id="sendButton">
+      Enviar
+    </button>
+
+  </div>
+
+</div>
+
+<script src="js/bot.js"></script>
 
 </body>
 </html>
- 

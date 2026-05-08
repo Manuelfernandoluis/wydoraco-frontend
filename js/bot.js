@@ -1,146 +1,169 @@
- document.addEventListener("DOMContentLoaded", async () => {
-const chatBox = document.getElementById("chatBox");
-const userInput = document.getElementById("userInput");
-const sendBtn = document.getElementById("sendBtn");
-const botTitulo = document.getElementById("botTitulo");
+const API_BASE_URL =
+  "https://wydoraco-backend.onrender.com";
 
-// Email fixo temporário
-const email = localStorage.getItem("empresaEmail");
+const chatMessages =
+  document.getElementById("chatMessages");
 
-console.log("🤖 BOT: Email do localStorage:", email);
+const userInput =
+  document.getElementById("userInput");
 
-let dadosEmpresa = {};
+const sendButton =
+  document.getElementById("sendButton");
 
-// Buscar dados da empresa
-try {
-const response = await fetch(`https://wydoraco-backend.onrender.com/company/data/${email}`);
-dadosEmpresa = await response.json();
+const email =
+  localStorage.getItem("empresaEmail");
 
- 
-console.log("🤖 BOT: Dados da empresa carregados:", dadosEmpresa);
+/* =========================
+   SCROLL AUTOMÁTICO
+========================= */
 
-botTitulo.innerText = `Assistente da ${dadosEmpresa.nome || "Empresa"}`;
-
-adicionarMensagem("bot", "Olá! Como posso ajudar?");
- 
-
-} catch (error) {
-console.log("🤖 BOT: Erro ao carregar dados da empresa:", error);
-adicionarMensagem("bot", "Erro ao carregar dados da empresa.");
+function scrollToBottom() {
+  chatMessages.scrollTop =
+    chatMessages.scrollHeight;
 }
 
-// Enviar pergunta
-sendBtn.addEventListener("click", () => {
-const pergunta = userInput.value.trim();
+/* =========================
+   ADICIONAR MENSAGEM
+========================= */
 
- 
-if (!pergunta) return;
+function addMessage(text, type) {
 
-adicionarMensagem("user", pergunta);
+  const message =
+    document.createElement("div");
 
-responderBot(pergunta);
+  message.classList.add(
+    type === "user"
+      ? "user-message"
+      : "bot-message"
+  );
 
-userInput.value = "";
- 
+  message.innerHTML = text;
 
-});
+  chatMessages.appendChild(message);
 
-userInput.addEventListener("keypress", (e) => {
-if (e.key === "Enter") {
-sendBtn.click();
-}
-});
-
-// Adicionar mensagem
-function adicionarMensagem(tipo, texto) {
-const msg = document.createElement("div");
-msg.classList.add("mensagem", tipo);
-
-
-msg.innerHTML = texto.replace(/\n/g, "<br>");
-
-chatBox.appendChild(msg);
-chatBox.scrollTop = chatBox.scrollHeight;
- 
-
+  scrollToBottom();
 }
 
-// Mostrar digitando
-function mostrarDigitando() {
-const typing = document.createElement("div");
-typing.classList.add("mensagem", "bot");
-typing.id = "typing";
-typing.innerText = "...";
+/* =========================
+   LOADING
+========================= */
 
- 
-chatBox.appendChild(typing);
-chatBox.scrollTop = chatBox.scrollHeight;
- 
+function createLoading() {
 
+  const loading =
+    document.createElement("div");
+
+  loading.classList.add("bot-message");
+
+  loading.id = "loadingMessage";
+
+  loading.innerHTML =
+    "⌛ Assistente digitando...";
+
+  chatMessages.appendChild(loading);
+
+  scrollToBottom();
 }
 
-// Remover digitando
-function removerDigitando() {
-const typing = document.getElementById("typing");
-if (typing) typing.remove();
+function removeLoading() {
+
+  const loading =
+    document.getElementById("loadingMessage");
+
+  if (loading) {
+    loading.remove();
+  }
 }
 
-console.log(dadosEmpresa);
+/* =========================
+   ENVIAR MENSAGEM
+========================= */
 
-// Respostas IA
-function responderBot(pergunta) {
-mostrarDigitando();
- 
-console.log("🤖 BOT: Fazendo pergunta:", pergunta);
-console.log("🤖 BOT: Email da empresa:", dadosEmpresa.email);
+async function sendMessage() {
 
-fetch("https://wydoraco-backend.onrender.com/ia", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
+  const pergunta =
+    userInput.value.trim();
 
-  body: JSON.stringify({
-    pergunta,
-    nome: dadosEmpresa.nome,
-    produtosBot: dadosEmpresa.produtosBot || dadosEmpresa.produtos,
-    servicosBot: dadosEmpresa.servicosBot || dadosEmpresa.servicos,
-    extra: dadosEmpresa.extra,
-    email: dadosEmpresa.email
-  })
-})
-  .then(res => res.json())
-  .then(data => {
-    removerDigitando();
+  if (!pergunta) return;
 
-    console.log("🤖 BOT: Resposta recebida:", data);
-    console.log("🤖 BOT: Limite?", data.limite);
-    console.log("🤖 BOT: Perguntas usadas:", data.perguntasUsadas);
+  addMessage(pergunta, "user");
 
-    adicionarMensagem("bot", data.resposta);
+  userInput.value = "";
 
-    salvarConversa(pergunta, data.resposta);
-  });
- 
+  createLoading();
 
+  try {
+
+    const response = await fetch(
+      `${API_BASE_URL}/ia`,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+          pergunta,
+          email
+        })
+      }
+    );
+
+    const data =
+      await response.json();
+
+    removeLoading();
+
+    addMessage(
+      data.resposta,
+      "bot"
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    removeLoading();
+
+    addMessage(
+      "❌ Erro ao comunicar com a IA.",
+      "bot"
+    );
+  }
 }
 
-// Salvar conversa
-async function salvarConversa(pergunta, resposta) {
-try {
-await fetch("https://wydoraco-backend.onrender.com/log", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-sessionId: localStorage.getItem("empresaEmail"),
-userMessage: pergunta,
-botResponse: resposta
-})
-});
-} catch (error) {
-console.error("Erro ao salvar conversa:", error);
-}
-}
-});
+/* =========================
+   BOTÃO ENVIAR
+========================= */
+
+sendButton.addEventListener(
+  "click",
+  sendMessage
+);
+
+/* =========================
+   ENTER
+========================= */
+
+userInput.addEventListener(
+  "keypress",
+  (e) => {
+
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  }
+);
+
+/* =========================
+   AUTOFOCUS
+========================= */
+
+window.addEventListener(
+  "load",
+  () => {
+    userInput.focus();
+  }
+);

@@ -10,8 +10,11 @@ const userInput =
 const sendButton =
   document.getElementById("sendButton");
 
-const email =
-  localStorage.getItem("empresaEmail");
+const params =
+  new URLSearchParams(window.location.search);
+
+const empresa =
+  params.get("empresa");
 
 /* =========================
    SCROLL AUTOMÁTICO
@@ -104,10 +107,10 @@ async function sendMessage() {
             "application/json"
         },
 
-        body: JSON.stringify({
-          pergunta,
-          email
-        })
+         body: JSON.stringify({
+         pergunta,
+         empresa
+       })
       }
     );
 

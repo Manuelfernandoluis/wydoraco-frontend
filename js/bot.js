@@ -45,7 +45,7 @@ function addMessage(text, type) {
       : "bot-message"
   );
 
-  message.innerHTML = text;
+ message.textContent = text;
 
   chatMessages.appendChild(message);
 

@@ -134,6 +134,8 @@ body {
 
   font-size: 14px;
 
+  white-space: pre-wrap;
+
   animation: fadeIn 0.25s ease;
 
   word-break: break-word;

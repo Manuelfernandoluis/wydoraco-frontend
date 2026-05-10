@@ -225,3 +225,19 @@ window.addEventListener(
     userInput.focus();
   }
 );
+
+window.addEventListener("load", async () => {
+
+  try {
+
+    await fetch(API_BASE_URL);
+
+    console.log("Backend acordado");
+
+  } catch (error) {
+
+    console.log("Backend iniciando...");
+  }
+
+  userInput.focus();
+});

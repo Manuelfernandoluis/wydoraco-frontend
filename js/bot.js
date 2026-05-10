@@ -30,6 +30,17 @@ function scrollToBottom() {
     chatMessages.scrollHeight;
 }
 
+function formatMessage(text) {
+
+  return text
+
+    // Negrito
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+
+    // Quebra de linha
+    .replace(/\n/g, "<br>");
+}
+
 /* =========================
    ADICIONAR MENSAGEM
 ========================= */
@@ -45,7 +56,7 @@ function addMessage(text, type) {
       : "bot-message"
   );
 
- message.textContent = text;
+message.innerHTML = formatMessage(text);
 
   chatMessages.appendChild(message);
 
@@ -81,6 +92,35 @@ function removeLoading() {
   if (loading) {
     loading.remove();
   }
+}
+
+function createProductCard(nome, preco) {
+
+  const card =
+    document.createElement("div");
+
+  card.classList.add("product-card");
+
+  card.innerHTML = `
+  
+    <h3>${nome}</h3>
+
+    <div class="product-price">
+      ${preco} Kz
+    </div>
+
+    <div class="product-description">
+      Produto disponível na Wydoraço.
+    </div>
+
+    <button>
+      Comprar
+    </button>
+  `;
+
+  chatMessages.appendChild(card);
+
+  scrollToBottom();
 }
 
 /* =========================
@@ -140,6 +180,16 @@ async function sendMessage() {
       "bot"
     );
   }
+
+  if (
+  data.resposta.includes("Arduino UNO")
+) {
+
+  createProductCard(
+    "Arduino UNO",
+    "11.000"
+  );
+}
 }
 
 /* =========================

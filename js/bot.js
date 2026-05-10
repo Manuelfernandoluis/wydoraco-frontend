@@ -13,8 +13,13 @@ const sendButton =
 const params =
   new URLSearchParams(window.location.search);
 
-const empresa =
-  params.get("empresa");
+let empresa = params.get("empresa");
+
+if (!empresa) {
+  empresa = "wydoraco@gmail.com";
+}
+
+console.log("EMPRESA:", empresa);
 
 /* =========================
    SCROLL AUTOMÁTICO

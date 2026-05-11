@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-<meta charset="UTF-8">
-<title>Estatísticas</title>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Estatísticas</title>
+
+  <link
+    rel="stylesheet"
+    href="css/estatisticas.css"
+  >
+
 </head>
+
 <body>
 
-<h1>Área de Estatísticas</h1>
+<div class="dashboard-container">
 
-<a href="dashboard.html">Voltar ao Dashboard</a>
+  <div class="top-bar">
+
+    <h1>Estatísticas</h1>
+
+    <a href="dashboard.html">
+      Voltar
+    </a>
+
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+
+      <h3>Perguntas</h3>
+
+      <p id="perguntas">
+        0
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Plano Atual</h3>
+
+      <p id="plano">
+        ---
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Produtos</h3>
+
+      <p id="produtos">
+        0
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Serviços</h3>
+
+      <p id="servicos">
+        0
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>IA Ativa</h3>
+
+      <p id="ia">
+        Não
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/estatisticas.js"></script>
 
 </body>
 </html>

@@ -14,76 +14,67 @@
   <link rel="stylesheet" href="css/bot.css">
 </head>
 
-<body>
+ <body>
 
 <div class="chat-container">
 
-  <!-- HEADER -->
+    <div class="chat-header">
 
-  <div class="chat-header">
+        <div class="chat-header-left">
 
-    <div>
-      <h2>Wydoraço IA</h2>
+            <img
+                src="wydoraco (2).jpg"
+                alt="Wydoraço"
+                class="header-logo"
+            >
 
-      <p>
-        Assistente virtual inteligente
-      </p>
-    </div>
+            <div class="chat-header-info">
+                <h2>Wydoraço IA</h2>
 
-    <div class="status-online">
-      Online
-    </div>
+                <p>
+                    <span class="status-dot"></span>
+                    Online
+                </p>
+            </div>
 
-  </div>
-
-  <!-- MENSAGENS -->
-
-  <div
-    class="chat-messages"
-    id="chatMessages"
-  >
-
-    <div class="bot-message">
-
-      👋 Olá! Seja bem-vindo à Wydoraço.
-
-      <br><br>
-
-      Posso ajudar com:
-
-      <br><br>
-
-      • Arduino
-      <br>
-      • Sensores
-      <br>
-      • Automação
-      <br>
-      • Componentes eletrônicos
-      <br>
-      • Serviços técnicos
-      <br>
-      • Compras
+        </div>
 
     </div>
 
-  </div>
-
-  <!-- INPUT -->
-
-  <div class="chat-input-area">
-
-    <input
-      type="text"
-      id="userInput"
-      placeholder="Digite sua mensagem..."
+    <div
+      class="chat-messages"
+      id="chatMessages"
     >
 
-    <button id="sendButton">
-      Enviar
-    </button>
+        <div class="message-row-bot">
 
-  </div>
+            <div class="mini-avatar"></div>
+
+            <div class="bot-message">
+                Olá! Sou a Wydoraço IA.
+                Como posso ajudar?
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Digite sua mensagem..."
+        >
+
+        <button
+            id="sendButton"
+            class="send-btn"
+        >
+            ➤
+        </button>
+
+    </div>
 
 </div>
 

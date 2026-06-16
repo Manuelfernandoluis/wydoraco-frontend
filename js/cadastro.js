@@ -2,7 +2,13 @@
 const API_BASE_URL = 'https://wydoraco-backend.onrender.com';
 
 // Função para cadastrar empresa
-async function cadastrarEmpresa(nome, email, senha) {
+async function cadastrarEmpresa( nome,
+  email,
+  senha,
+  iban,
+  express,
+  telefoneAtendimento,
+  telefoneSuporte) {
 try {
 const randomStr = Math.random().toString(36).substring(2, 6);
 const slug = nome.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + randomStr;
@@ -84,7 +90,13 @@ botao.disabled = false;
 return;
 }
 
-const sucesso = await cadastrarEmpresa(nome, email, senha);
+const sucesso = await cadastrarEmpresa( nome,
+  email,
+  senha,
+  iban,
+  express,
+  telefoneAtendimento,
+  telefoneSuporte);
 
 if (!sucesso) {
 botao.disabled = false;

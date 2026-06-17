@@ -15,6 +15,14 @@ const menuServicos = document.getElementById("menuServicos");
 const menuConversas = document.getElementById("menuConversas");
 const menuEstatisticas = document.getElementById("menuEstatisticas");
 const menuPlanos = document.getElementById("menuPlanos");
+const btnConfigurarBot =
+document.getElementById("btnConfigurarBot");
+
+btnConfigurarBot.addEventListener("click", () => {
+
+  window.location.href = "configuracao.html";
+
+});
 
 let secaoAtual = "dashboard";
 

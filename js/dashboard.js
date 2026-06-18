@@ -81,28 +81,7 @@ async function mostrarDashboard() {
 
   const email = localStorage.getItem("empresaEmail");
 
- conteudoDinamico.innerHTML = `
-<h2>Resumo da Empresa</h2>
-<div class="resumo-box">
-
-<p><strong>Plano:</strong>
-${data.plano || "Wydoraço Grátis"}
-</p>
-
-<p><strong>Perguntas Respondidas:</strong>
-${data.perguntasRespondidas || 0}
-</p>
-
-<a href="bot.html?empresa=${email}"
-target="_blank"
-class="btnBot">
-
-Abrir Meu Bot
-
-</a>
-
-</div>
-`;
+ 
 
   try {
     const response = await fetch(`${API_BASE_URL}/company/data/${email}`);
@@ -145,7 +124,9 @@ Abrir Meu Bot
       <div class="resumo-box">
         <p><strong>Plano:</strong> ${data.plano || "Wydoraço Grátis"}</p>
         <p><strong>Perguntas Respondidas:</strong> ${data.perguntasRespondidas || 0}</p>
-        <a href="bot.html" target="_blank" class="btnBot">Abrir Meu Bot</a>
+         <a href="bot.html?empresa=${email}" target="_blank" class="btnBot">
+  Abrir Meu Bot
+</a>
       </div>
     `;
 

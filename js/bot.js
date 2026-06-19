@@ -191,15 +191,7 @@ async function sendMessage() {
     "bot"
   );
 }
-  if (
-  data.resposta.includes("Arduino UNO")
-) {
-
-  createProductCard(
-    "Arduino UNO",
-    "11.000"
-  );
-}
+  
 }
 
 /* =========================

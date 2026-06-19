@@ -160,27 +160,37 @@ async function sendMessage() {
     );
 
     const data =
-      await response.json();
+     await response.json();
 
     removeLoading();
 
     addMessage(
-      data.resposta,
-      "bot"
-    );
+  data.resposta,
+  "bot"
+);
 
-  } catch (error) {
+    if (
+      data.resposta.includes("Arduino UNO")
+) {
 
-    console.log(error);
+  createProductCard(
+    "Arduino UNO",
+    "11.000"
+  );
 
-    removeLoading();
+}
 
-    addMessage(
-      "❌ Erro ao comunicar com a IA.",
-      "bot"
-    );
-  }
+} catch (error) {
 
+  console.log(error);
+
+  removeLoading();
+
+  addMessage(
+    "❌ Erro ao comunicar com a IA.",
+    "bot"
+  );
+}
   if (
   data.resposta.includes("Arduino UNO")
 ) {

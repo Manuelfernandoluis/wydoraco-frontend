@@ -97,3 +97,18 @@ button:hover {
   font-weight: bold;
 }
 
+#nome{
+  width: 50%;
+  min-height: 50px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+  font-size: 14px;
+  outline: none;
+}
+
+#nome:focus {
+  border-color: #1E90FF;
+}
+

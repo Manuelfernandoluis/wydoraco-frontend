@@ -7,43 +7,151 @@
   <link rel="stylesheet" href="css/cadastro.css">
 
 </head>
-<body>
+ <body>
 
+<div class="particles"></div>
 
-<div id="mother">    
+<div class="container">
 
-<h1 class="animated-title">Bem vindo(a) à plataforma da Wydoraço </h1>
+    <div class="logo-area">
 
+        <img
+        src="wydoracoSemFundoPreto.png"
+        class="logo"
+        alt="Wydoraço IA">
 
-  <div class="container">
-    <h2>Cadastro de Empresa</h2>
+        <h1 class="animated-title">
+            Wydoraço IA
+        </h1>
+
+        <p class="subtitle">
+            Crie sua empresa e automatize vendas com inteligência artificial.
+        </p>
+
+    </div>
+
     <form id="formCadastro">
-      <label for="nome">Nome da Empresa</label>
-      <input type="text" id="nome" placeholder="Digite o nome da empresa" required>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Digite o email da empresa" required>
+        <div class="input-box">
 
-      <label for="senha">Senha</label>
-      <input type="password" id="senha" placeholder="Digite uma senha" required>
+            <label>Nome da Empresa</label>
 
-      <input type="text" id="iban" placeholder="IBAN da empresa" required>
+            <input
+            type="text"
+            id="nome"
+            placeholder="Digite o nome da empresa"
+            required>
 
-     <input type="text" id="express" placeholder="Número Express (opcional)">
+        </div>
 
-     <input type="text" id="telefoneAtendimento" placeholder="Telefone de atendimento" required>
 
-     <input type="text" id="telefoneSuporte" placeholder="Telefone de suporte técnico" (opcional)>
+        <div class="input-box">
 
-      <button type="submit">Cadastrar</button>
+            <label>Email</label>
+
+            <input
+            type="email"
+            id="email"
+            placeholder="Digite o email da empresa"
+            required>
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>Senha</label>
+
+            <input
+            type="password"
+            id="senha"
+            placeholder="Digite uma senha"
+            required>
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>IBAN</label>
+
+            <input
+            type="text"
+            id="iban"
+            placeholder="IBAN da empresa"
+            required>
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>Número Express</label>
+
+            <input
+            type="text"
+            id="express"
+            placeholder="Número Express (opcional)">
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>Telefone de Atendimento</label>
+
+            <input
+            type="text"
+            id="telefoneAtendimento"
+            placeholder="Telefone de atendimento"
+            required>
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>Telefone de Suporte</label>
+
+            <input
+            type="text"
+            id="telefoneSuporte"
+            placeholder="Telefone de suporte técnico (opcional)">
+
+        </div>
+
+
+        <button type="submit">
+
+            Cadastrar Empresa
+
+        </button>
+
     </form>
 
+    <div class="links">
+
+        <span>Já possui uma conta?</span>
+
+        <a href="index.html">
+
+            Entrar
+
+        </a>
+
+    </div>
+
     <div id="mensagem"></div>
-  </div>
 
-  </div>
+    <div class="footer">
 
+        © 2026 Wydoraço IA
+
+    </div>
+
+</div>
 
 <script src="js/cadastro.js"></script>
+
 </body>
 </html>

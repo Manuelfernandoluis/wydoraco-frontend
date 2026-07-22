@@ -1,5 +1,7 @@
 const API_BASE_URL = "https://wydoraco-backend.onrender.com";
 
+const email = localStorage.getItem("empresaEmail");
+
 async function carregarPlanoAtual() {
 
   try {

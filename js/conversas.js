@@ -23,9 +23,9 @@ async function loadConversas() {
 
       item.innerHTML = `
         <div style="padding:15px; border-bottom:1px solid #ddd;">
-          <strong>Cliente:</strong> ${log.userMessage}<br>
-          <strong>Bot:</strong> ${log.botResponse}<br>
-          <small>${new Date(log.createdAt).toLocaleString()}</small>
+           <strong>Cliente:</strong> ${log.pergunta}<br>
+           <strong>IA:</strong> ${log.resposta}<br>
+           <small>${new Date(log.data).toLocaleString()}</small>
         </div>
       `;
 

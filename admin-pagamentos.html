@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamentos Pendentes</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            padding:30px;
+        }
+
+        h1{
+            color:#333;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+
+        th{
+            background:#0d6efd;
+            color:white;
+        }
+
+        button{
+            padding:8px 14px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            background:green;
+            color:white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Pagamentos Pendentes</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Empresa</th>
+<th>Plano</th>
+<th>Valor</th>
+<th>Referência</th>
+<th>Data</th>
+<th>Ação</th>
+
+</tr>
+
+</thead>
+
+<tbody id="listaPagamentos">
+
+</tbody>
+
+</table>
+
+<script src="admin-pagamentos.js"></script>
+
+</body>
+</html>

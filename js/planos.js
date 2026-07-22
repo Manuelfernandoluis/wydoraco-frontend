@@ -16,16 +16,30 @@ async function carregarPlanoAtual() {
 
     botoes.forEach(btn => {
 
-      const planoBotao = btn.dataset.plano;
+    const planoBotao = btn.dataset.plano;
 
-      if (planoBotao === data.plano) {
+    // Plano ativo
+    if (planoBotao === data.plano) {
 
         btn.innerText = "Plano Atual";
         btn.disabled = true;
         btn.style.opacity = "0.7";
         btn.style.cursor = "not-allowed";
-      }
-    });
+    }
+
+    // Plano solicitado
+    else if (
+        planoBotao === data.planoSolicitado &&
+        data.paymentStatus === "pending"
+    ) {
+
+        btn.innerText = "Aguardando Pagamento";
+        btn.disabled = true;
+        btn.style.background = "#f39c12";
+        btn.style.cursor = "not-allowed";
+    }
+
+});
 
   } catch (error) {
     console.log(error);

@@ -8,6 +8,7 @@ async function loadConversas() {
   try {
     const response = await fetch(`${API_BASE_URL}/logs/${email}`);
     const data = await response.json();
+    console.log("Conversas recebidas:", data);
 
     listaConversas.innerHTML = "";
 
